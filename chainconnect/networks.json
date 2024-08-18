@@ -1,0 +1,8 @@
+{
+  "aurora-testnet": {
+    "ChainConnect": {
+      "address": "0x3edb40259F669E17f40f67aCa770B7F0334734B6",
+      "startBlock": 0
+    }
+  }
+}

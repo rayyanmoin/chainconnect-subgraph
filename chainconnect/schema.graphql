@@ -1,0 +1,207 @@
+type AccountCreated @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  userName: String! # string
+  displayName: String! # string
+  bio: String! # string
+  image: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Approval @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  approved: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ApprovalForAll @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Bid @entity(immutable: true) {
+  id: Bytes!
+  _user: Bytes! # address
+  _postId: BigInt! # uint256
+  _bidAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BidPlaced @entity(immutable: true) {
+  id: Bytes!
+  bidder: Bytes! # address
+  postId: BigInt! # uint256
+  bidAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BiddableTokenPurchased @entity(immutable: true) {
+  id: Bytes!
+  oldOwner: Bytes! # address
+  newOwner: Bytes! # address
+  amount: BigInt! # uint256
+  ChainConnect_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type InfoChanged @entity(immutable: true) {
+  id: Bytes!
+  displayName: String! # string
+  bio: String! # string
+  image: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Mint @entity(immutable: true) {
+  id: Bytes!
+  _user: Bytes! # address
+  _bidDuration: BigInt! # uint256
+  _status: Int! # uint8
+  _price: BigInt! # uint256
+  _metadata: String! # string
+  _tokenURI: String! # string
+  _tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnerChanged @entity(immutable: true) {
+  id: Bytes!
+  oldOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PostBought @entity(immutable: true) {
+  id: Bytes!
+  to: Bytes! # address
+  _from: Bytes! # address
+  _tokenId: BigInt! # uint256
+  _amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PostChanged @entity(immutable: true) {
+  id: Bytes!
+  _user: Bytes! # address
+  _tokenId: BigInt! # uint256
+  _sellValue: BigInt! # uint256
+  _bidDuration: BigInt! # uint256
+  _uri: String! # string
+  _buyStatus: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PostCreated @entity(immutable: true) {
+  id: Bytes!
+  ChainConnect_id: BigInt! # uint256
+  sender: Bytes! # address
+  uri: String! # string
+  buyStatus: Int! # uint8
+  sellValue: BigInt! # uint256
+  metadata: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PostDetailsChanged @entity(immutable: true) {
+  id: Bytes!
+  postId: BigInt! # uint256
+  status: Int! # uint8
+  price: BigInt! # uint256
+  bidDuration: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PostRewardClaimed @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  postId: BigInt! # uint256
+  reward: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PostSold @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  amount: BigInt! # uint256
+  ChainConnect_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardClaimed @entity(immutable: true) {
+  id: Bytes!
+  _user: Bytes! # address
+  _reward: BigInt! # uint256
+  _claimId: BigInt! # uint256
+  _likes: BigInt! # uint256
+  _signature: Bytes! # bytes
+  _tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardFactorChanged @entity(immutable: true) {
+  id: Bytes!
+  _owner: Bytes! # address
+  _oldFactor: BigInt! # uint256
+  _newFactor: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RewardTokenChanged @entity(immutable: true) {
+  id: Bytes!
+  _owner: Bytes! # address
+  _from: Bytes! # address
+  _to: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  tokenId: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

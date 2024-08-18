@@ -1,0 +1,80 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: ChainConnect
+    network: aurora-testnet
+    source:
+      address: "0x3edb40259F669E17f40f67aCa770B7F0334734B6"
+      abi: ChainConnect
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AccountCreated
+        - Approval
+        - ApprovalForAll
+        - Bid
+        - BidPlaced
+        - BiddableTokenPurchased
+        - InfoChanged
+        - Mint
+        - OwnerChanged
+        - PostBought
+        - PostChanged
+        - PostCreated
+        - PostDetailsChanged
+        - PostRewardClaimed
+        - PostSold
+        - RewardClaimed
+        - RewardFactorChanged
+        - RewardTokenChanged
+        - Transfer
+      abis:
+        - name: ChainConnect
+          file: ./abis/ChainConnect.json
+      eventHandlers:
+        - event: AccountCreated(address,string,string,string,string)
+          handler: handleAccountCreated
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: Bid(indexed address,indexed uint256,uint256)
+          handler: handleBid
+        - event: BidPlaced(address,uint256,uint256)
+          handler: handleBidPlaced
+        - event: BiddableTokenPurchased(address,address,uint256,uint256)
+          handler: handleBiddableTokenPurchased
+        - event: InfoChanged(string,string,string)
+          handler: handleInfoChanged
+        - event: Mint(address,uint256,uint8,uint256,string,string,indexed uint256)
+          handler: handleMint
+        - event: OwnerChanged(address,address)
+          handler: handleOwnerChanged
+        - event: PostBought(indexed address,indexed address,indexed uint256,uint256)
+          handler: handlePostBought
+        - event: PostChanged(address,indexed uint256,uint256,uint256,string,uint8)
+          handler: handlePostChanged
+        - event: PostCreated(uint256,address,string,uint8,uint256,string)
+          handler: handlePostCreated
+        - event: PostDetailsChanged(uint256,uint8,uint256,uint256)
+          handler: handlePostDetailsChanged
+        - event: PostRewardClaimed(address,uint256,uint256)
+          handler: handlePostRewardClaimed
+        - event: PostSold(address,address,uint256,uint256)
+          handler: handlePostSold
+        - event: RewardClaimed(address,uint256,uint256,uint256,bytes,indexed uint256)
+          handler: handleRewardClaimed
+        - event: RewardFactorChanged(address,uint256,uint256)
+          handler: handleRewardFactorChanged
+        - event: RewardTokenChanged(address,indexed address,indexed address)
+          handler: handleRewardTokenChanged
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/chain-connect.ts

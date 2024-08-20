@@ -38,7 +38,8 @@ import {
   RewardClaimed,
   RewardFactorChanged,
   RewardTokenChanged,
-  Transfer
+  Transfer,
+  UserRewards
 } from "../generated/schema"
 
 export function handleAccountCreated(event: AccountCreatedEvent): void {
@@ -285,6 +286,19 @@ export function handleRewardClaimed(event: RewardClaimedEvent): void {
   let entity = new RewardClaimed(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+
+let user = UserRewards.load(event.params._user);
+
+  if (!user) {
+    user = new UserRewards(event.params._user);
+  }
+
+  user.rewardClaimed = event.params._reward;
+  user.claimedAt = event.block.timestamp;
+  user.totalClaimed = user.totalClaimed.plus(event.params._reward);
+  user.transactionHash = event.transaction.hash;
+  user.save();
+  
   entity._user = event.params._user
   entity._reward = event.params._reward
   entity._claimId = event.params._claimId
@@ -297,6 +311,8 @@ export function handleRewardClaimed(event: RewardClaimedEvent): void {
   entity.transactionHash = event.transaction.hash
 
   entity.save()
+
+  
 }
 
 export function handleRewardFactorChanged(

@@ -50,6 +50,14 @@ type BidPlaced @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
+type UserRewards @entity(immutable: true) {
+	id: Bytes!
+	rewardClaimed: BigInt!
+	totalClaimed: BigInt!
+	claimedAt: BigInt!
+	transactionHash: Bytes!
+}
+
 type BiddableTokenPurchased @entity(immutable: true) {
   id: Bytes!
   oldOwner: Bytes! # address
